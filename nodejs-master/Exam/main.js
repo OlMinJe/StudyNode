@@ -3,37 +3,13 @@ var fs = require('fs');
 var url = require('url');
 // querystring 추가
 var qs = require('querystring');
-
-var template = {
-  HTML: function (title, list, body, control) {
-    return `
-    <!doctype html>
-    <html>
-        <head>
-            <title>WEB1 - ${title}</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <h1><a href="/">WEB</a></h1>
-            ${list}
-            ${control}
-            ${body}
-        </body>
-    </html>
-    `;
-  },
-  list: function(filelist) {
-    // 목록을 출력하기 위한 코드
-      var list = '<ul>';
-      var i = 0;
-      while(i < filelist.length) {
-          list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`;
-          i = i + 1;
-      }
-      list = list+'</ul>';
-      return list;
-  }
-};
+// 모듈 추가
+var template = require('./lib/template.js');
+// path 모듈 추가
+var path = require('path');
+// npm 외부 모듈
+// sanitize-html 모듈을 불러오는 코드를 추가한다.
+const sanitizeHtml = require('sanitize-html');
 
 var app = http.createServer(function(request, response) {
     var _url = request.url;
@@ -57,15 +33,22 @@ var app = http.createServer(function(request, response) {
             //});
         } else {
             fs.readdir('./data', function(error, filelist) {
-                fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description) {
+              var filteredId = path.parse(queryData.id).base;
+                fs.readFile(`data/${filteredId}`, 'utf8', function(err, description) {
                     var title = queryData.id;
+                    // 상세 보기 페이지를 생성하는 코드에 필터링 기능을 추가한다.
+                    var sanitizeTitle = sanitizeHtml(title);
+                    var sanitizeDescription = sanitizeHtml(description, {
+                      allowedTags: ['h1'] // 옵션 넣지 않아도 h1태그가 출력됨 -> 버전 올라가서 그런듯₩
+                    });
+
                     var list = template.list(filelist);
-                    var html = template.HTML(title, list,
-                        `<h2>${title}</h2><p>${description}</p>`,
-                        `<a href="/create">create</a>
-                        <a href="/update?id=${title}">update</a>
+                    var html = template.HTML(sanitizeTitle, list,
+                        `<h2>${sanitizeTitle}</h2><p>${sanitizeDescription}</p>`,
+                        `<a href="/create">create</>
+                        <a href="/update?id=${sanitizeTitle}">update</a>
                         <form action="delete_process" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
-                            <input type="hidden" name="id" value="${title}">
+                            <input type="hidden" name="id" value="${sanitizeTitle}">
                             <input type="submit" value="delete">
                         </form>`
                     );
@@ -111,7 +94,8 @@ var app = http.createServer(function(request, response) {
         });
     } else if(pathname === '/update') {
       fs.readdir('./data', function(error, filelist) {
-        fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description) {
+        var filteredId = path.parse(queryData.id).base;
+        fs.readFile(`data/${filteredId}`, 'utf8', function(err, description) {
             var title = queryData.id;
             var list = template.list(filelist);
             var html = template.HTML(title, list,
@@ -162,8 +146,9 @@ var app = http.createServer(function(request, response) {
       request.on('end', function() {
         var post = qs.parse(body);
         var id = post.id;
+        var filteredId = path.parse(id).base;
         // 삭제해주는 코드
-        fs.unlink(`data/${id}`, function(error) {
+        fs.unlink(`data/${filteredId}`, function(error) {
           response.writeHead(302, {Location: `/`});
           response.end();
         });
