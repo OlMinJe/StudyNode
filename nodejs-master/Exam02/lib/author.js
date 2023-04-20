@@ -68,9 +68,9 @@ exports.update = function(request, response) {
                     td { border: 1px solid black; }
                 </style>
                 <form action="/author/update_process" method="post">
-                    <p><input type="hidden" name="id" value="${queryData.id}"></p>
-                    <p><input type="text" name="name" value="${author[0].name}" placeholder="name"></p>
-                    <p><textarea name="profile" placeholder="description">${author[0].profile}</textarea></p>
+                    <p><input type="hidden" name="id" value="${sanitizeHTML(queryData.id)}"></p>
+                    <p><input type="text" name="name" value="${sanitizeHTML(author[0].name)}" placeholder="name"></p>
+                    <p><textarea name="profile" placeholder="description">${sanitizeHTML(author[0].profile)}</textarea></p>
                     <p><input type="submit" value="update"></p>
                 </form>
                 ` ,

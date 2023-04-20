@@ -5,6 +5,9 @@ var template = require('./template.js');
 var url = require('url');
 // 글 생성 처리 옮기기(1)
 var qs = require('querystring');
+// sanitize-html 라이브러리를 이용하는 코'드 추가하기
+var sanitizeHTML = require('sanitize-html');
+
 
 // 목록 코드 옮기기(1)
 exports.home = function(request, response) {
@@ -29,8 +32,17 @@ exports.page = function(request, response) {
         if(error) {
             throw error;
         }
-        db.query(`SELECT * FROM topic LEFT JOIN author ON topic.author_id=author.id WHERE
-                 topic.id=?`,[queryData.id], function(error2, topic) {
+        /*
+        var sql = `SELECT * FROM topic LEFT JOIN author ON
+        topic.author_id=author.id WHERE
+        topic.id=${db.escape(queryData.id)}`; 
+        */
+        // escape 메서드를 이용하여 확인 -> topic.id의 값이 sql문이 아닌 일반 문자열로 들어간다는 것을 알 수 있음
+        // 연속적인 sql문이 들어올 때 어떤식으로 코드를 받아들이는지 확인하는 작업
+        //console.log(sql);
+        var query = db.query(`SELECT * FROM topic LEFT JOIN author ON
+                    topic.author_id=author.id WHERE
+                    topic.id=?`, [queryData.id], function(error2, topic) {
             if(error2) {
                 throw error2;
             }
@@ -39,9 +51,9 @@ exports.page = function(request, response) {
             var description = topic[0].description;
             var list = template.list(topics);
             var html = template.HTML(title, list,
-                `<h2>${title}</h2>
-                ${description}
-                <p>by ${topic[0].name}</p>
+                `<h2>${sanitizeHTML(title)}</h2>
+                ${sanitizeHTML(description)}
+                <p>by ${sanitizeHTML(topic[0].name)}</p>
                 `,
                 ` <a href="/create">create</a>
                     <a href="/update?id=${queryData.id}">update</a>
@@ -64,7 +76,7 @@ exports.create = function(request, response) {
 
             var title = 'Create';
             var list = template.list(topics);
-            var html = template.HTML(title, list,
+            var html = template.HTML(sanitizeHTML(title), list,
                 `
                 <form action="/create_process" method="post">
                     <p><input type="text" name="title" placeholder="title"></p>
@@ -125,13 +137,13 @@ exports.update = function(request, response) {
             // 글 수정 페이지에 작성자 목록 출력하기
             db.query(`SELECT * FROM author`, function(error2, authors) {
                 var list = template.list(topics);
-                var html = template.HTML(topic[0].title, list,
+                var html = template.HTML(sanitizeHTML(topic[0].title), list,
                     `
                     <form action="/update_process" method="post">
                         <input type="hidden" name="id" value="${topic[0].id}">
-                        <p><input type="text" name="title" placeholder="title" value="${topic[0].title}"></p>
+                        <p><input type="text" name="title" placeholder="title" value="${sanitizeHTML(topic[0].title)}"></p>
                         <p>
-                            <textarea name="description" placeholder="description">${topic[0].description}</textarea>
+                            <textarea name="description" placeholder="description">${sanitizeHTML(topic[0].description)}</textarea>
                         </p>
                         <p>
                             ${template.authirSelect(authors, topic[0].author_id)}
