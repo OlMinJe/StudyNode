@@ -103,7 +103,7 @@ module.exports = {
         */
 
         while(i < filelist.length) {
-            list += `<li><a href="/page/${filelist[i]}">${sanitizeHTML(filelist[i])}</a></li>`;
+            list += `<li><a href="/topic/${filelist[i]}">${sanitizeHTML(filelist[i])}</a></li>`;
             i = i + 1;
         }
         list = list+'</ul>';
