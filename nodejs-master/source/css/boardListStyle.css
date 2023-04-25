@@ -1,0 +1,14 @@
+th, td { border-bottom: 1px solid #ddd; }
+tr:hover { background-color: #eee; }
+
+/* 세부 항목 조절 */
+.boardList td:nth-child(1) { width: 70px; }
+.boardList td:nth-child(2) { text-align: left; }
+.right { 
+  float: right;
+  padding-right: 20px;
+}
+.left {
+  float: left;
+  padding-left: 20px;
+}

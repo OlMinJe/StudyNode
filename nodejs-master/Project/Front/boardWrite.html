@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유게시판::Exam.com</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <h1>Header</h1>
+    </header>
+    <!-- 본문 -->
+    <article>
+        <div class="pageTitle"><h2>자유 게시판</h2></div>
+        <div class="container">
+            <form action="boardWriteProc" method="post">
+                <div class="boardInput">
+                    <input type="text" name="author" placeholder="name">
+                </div>
+                <div class="boardInput">
+                    <input class="txtTitle" type="text" name="title" placeholder="제목">
+                </div>
+                <div class="boardInput">
+                    <textarea name="content" placeholder="내용"></textarea>
+                </div>
+                <div class="control">
+                    <div class="right">
+                        <button type="submit">글쓰기</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </article>
+    <!-- footer -->
+    <footer>
+        Footer
+    </footer>
+</body>
+</html>

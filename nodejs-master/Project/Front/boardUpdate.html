@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자유게시판::Exam.com</title>
+
+  <link href="./css/style.css" rel="stylesheet" type="text/css">
+  <link href="./css/boardContentStyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  <article>
+    <div class="pageTitle">
+      <h2>자유 게시판</h2>
+    </div>
+    
+    <hr>
+    <form action="boardUpdateProc" method="post">
+      <div class="boardUpdateHeader">
+        <div class="left">작성자: 홍길동</div>
+        <div class="right">작성일: 2024.04.25</div>
+      </div>
+      <div class="boardInput">
+        <input class="txtTitle" type="text" 
+          name="title" placeholder="제목"
+          value="국정의 중요한 사항에 관한 대통령의 자문에 응하기 위하여 국가원로로 구성되는"
+        >
+      </div>
+      <div class="boardInput">
+        <textarea name="content">
+          대통령은 취임에 즈음하여 다음의 선서를 한다 . 체포 · 구속 · 압수 또는 수색을 할 때에는 적법한 절차에 따라 검사의 신청에 의하여 법관이 발부한 영장을 제시하여야 한다 . 다만 , 현행범인인 경우와 장기 3 년 이상의 형에 해당하는 죄를 범하고 도피 또는 증거인멸의 염려가 있을 때에는 사후에 영장을 청구할 수 있다 . 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다 . 모든 국민은 직업선택의 자유를 가진다 . 대통령의 선거에 관한 사항은 법률로 정한다 . 대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다 . 국무회의는 대통령 · 국무총리와 15 인 이상 30 인 이하의 국무위원으로 구성한다
+        </textarea>
+      </div>
+      <div class="control">
+        <div class="right">
+          <button type="submit">
+            수정
+          </button>
+        </div>
+      </div>
+    </form>
+  </article>
+  <footer>
+    <h2>Footer</h2>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유게시판::Exam.com</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <h1>Header</h1>
+    </header>
+    <!-- 본문 -->
+    <article>
+        <div class="pageTitle"><h2>자유 게시판</h2></div>
+        <div class="container">
+            <table class="borderHeader">
+                <tr>
+                    <td>작성자: 홍길동</td>
+                    <td>작성일: 2023.04.25</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        제목이랍니당~
+                    </td>
+                </tr>
+            </table>
+            <div class="boardContent">
+                내용이랍니다~
+            </div>
+            <div class="control">
+                <div class="left">
+                    <button type="button" onclick="location.href='boardList.html'">목록</button>
+                </div>
+                <div class="right">
+                    <button type="button" onclick="location.href='boardUpdate.html'">수정</button>
+                    <button type="button" onclick="location.href='boardDelete()'">삭제</button>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- footer -->
+    <footer>
+        Footer
+    </footer>
+
+    <script>
+        function boardDelete() {
+            if(confirm("게시물을 삭제 하겠습니까?")) {
+                location.href = "boardDeleteProc";
+            }
+        }
+    </script>
+</body>
+</html>
