@@ -1,0 +1,31 @@
+table { text-align: left; }
+
+.left {
+  float: left;
+  padding-left: 20px;
+}
+.right { 
+  float: right;
+  padding-right: 20px;
+}
+
+.boardUpdateHeader { 
+  margin: 15px 0; 
+  height: 30px;
+}
+.boardInput { margin: 15px 0; }
+.boardInput::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.txtTitle { 
+  font-size: 20px; 
+  font-weight: bold;
+}
+
+.boardContent {
+  margin: 20px 0 0 0;
+  padding: 5px 5px 20px 5px;
+  border-bottom: 1px solid #ccc;
+}
