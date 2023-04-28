@@ -1,0 +1,122 @@
+/* index page */
+@keyframes index {
+  from { 
+    font-size: 20px; 
+    top: 16%; left: 80%; 
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to { 
+    font-size: 40px; 
+    left: calc(50% - 282px); 
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);}
+}
+.homepage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  background-color: #b97f60;
+  background-image: linear-gradient(335deg, #2d1814 23px, transparent 23px),
+    linear-gradient(155deg, #2d1814 23px, transparent 23px),
+    linear-gradient(335deg, #2d1814 23px, transparent 23px),
+    linear-gradient(155deg, #2d1814 23px, transparent 23px);
+  background-size: 58px 58px;
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+}
+.homepage::after {
+  content: '어이 잘못왔어 여긴 우리집이라고';
+  position: absolute;
+  top: 18%;
+  left: calc(50% - 266px);
+  padding: 25px;
+  font-size: 40px;
+  font-weight: bold;
+  background-color: #f4ba42;
+  border-radius: 10px;
+  animation-name: index;
+  animation-duration: 2s;
+}
+.homepage img {
+  box-shadow: 7px -6px 0px 2px #b97f60;
+  margin: 350px 0 0;
+  width: 25%;
+  transition: width 2s, height 2s;
+}
+.homepage img:hover {
+  width: 30%;
+}
+
+/* 게시물 리스트 id="boardList" */
+#boardList tr { text-align: center; }
+#boardList td:nth-child(1) { 
+  width: 8%; 
+  background-color: #ffd853;
+  border-right: 1px solid;
+}
+#boardList td:nth-child(2) { 
+  text-align: left; 
+  width: 75%; 
+  padding-left: 10px;
+}
+#boardList tbody tr:hover { 
+  /* background-color: #fcd50e; */
+  box-shadow: 0px 0px 10px 7px #ddd5d5;
+  color: #923737;
+}
+#boardList tbody a {
+  display: inline-block;
+  width: 700px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 게시물 보기 id="boardRead" */
+#boardRead table { border: 1px solid; }
+#boardRead td { padding: 0 10px 0; width: 50%; }
+#boardRead thead td:nth-child(1) { border-right: 1px solid; }
+#boardRead .txtContent { height: 400px; }
+
+/* 게시글 쓰기 id="boardCreate" */
+#boardCreate h2 { text-align: center; }
+#boardCreate form div:nth-child(n) { margin-bottom: 5px; }
+
+/* 게시글 수정 id="boardUpdate" */
+#boardUpdate .header { 
+  display: flex;
+  border: 1px solid;
+  background-color: #fee;
+}
+#boardUpdate .header div { width: 50%; padding: 10px; }
+#boardUpdate .header div:nth-child(1) { border-right: 1px solid; }
+#boardUpdate form > div { margin-bottom: 10px; }
+
+/* (홈제외) footer */
+footer { position: relative; }
+footer::before { 
+  content: ''; 
+  width: 110px; 
+  height: 110px; 
+  background-image: url('../image/img03.png'); 
+  background-size: 100%;
+  background-repeat: no-repeat; 
+  position: absolute;
+  top: -95px;
+  right: 30px;
+  cursor: crosshair;
+}
+footer > a { 
+  position: absolute; 
+  display: block;
+  width: 110px; 
+  height: 110px; 
+  top: -95px;
+  right: 30px;
+}
+footer h2 { margin-bottom: 30px; }

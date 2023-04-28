@@ -1,0 +1,80 @@
+/* 초기화 */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poor Story', cursive;
+    color: #333;
+  }
+body { margin: 0 auto; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul,
+ol,
+li { list-style: none; }
+h1, h2 { cursor: pointer; }
+header { padding: 85px; background-color: #dd8ba1; }
+header h1 { 
+    font-family: 'Sigmar', cursive;
+    font-size: 45px;
+    color: #fff; 
+}
+article {
+    min-height: 500px;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 50px 10px 140px;
+    border: 1px solid #ccc;
+    box-shadow: 0 20px 12px 10px #ccc;
+    background-color: #fff;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    cursor: default;
+    margin-bottom: 20px;
+}
+thead { background-color: #fff5d3; }
+thead tr { font-size: 20px; }
+tr { height: 40px; border-bottom: 1px solid; }
+th { height: 50px; }
+button {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover { background-color: #edbd12; color: white; }  
+input { padding: 10px; width: 100%; }
+input:focus-visible { background-color: #edbd12; }
+textarea {
+    padding: 10px;
+    width: 100%;
+    height: 400px;
+}
+hr { border-width: 2px; }
+footer {
+    height: 100px;
+    padding: 85px;
+    background-color: #f5e2e2;
+}
+
+.left { float: left; display: inline-block; }
+.right { float: right; display: inline-block; }
+
+/* 게시물 공통 */
+.container { 
+    padding: 20px 0 40px; 
+    background:
+    radial-gradient(black 3px, transparent 4px),
+    radial-gradient(black 3px, transparent 4px),
+    linear-gradient(#fff 4px, transparent 0),
+    linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+    linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+    #fff;
+    background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+}
+.pageTitle { margin-bottom: 10px; }
+.pageTitle h2 { font-size: 30px; }
